@@ -1,0 +1,10 @@
+{
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "clangd.path": "/snap/bin/clangd",
+    "C_Cpp.default.compilerPath": "/usr/bin/gcc",
+    "files.associations": {
+        "r_debug.h": "c",
+        "r_types.h": "c",
+        "r_userconf.h": "c"
+    }
+}

@@ -117,8 +117,8 @@ libr/flag/d/tags.r2
 # CLion
 .idea/
 # VSCode
-.vscode/
-CMakeLists.txt
+# .vscode/
+# CMakeLists.txt
 *.cmake
 cmake-build-*
 # Snap packaging

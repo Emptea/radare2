@@ -19,6 +19,7 @@ control_c() {
 }
 trap control_c 2
 DEBUGGER=1
+CFLAGS=-g
 USE_LIB_ATOMIC=0
 USE_MAGIC=0
 WANT_THREADS=1
@@ -424,7 +425,7 @@ ocho "checking target system type... ${TARGET}"
 [ -n "${prefix}" ] && PREFIX="${prefix}"
 ocho "checking for working directories... ${WODIS}"
 ocho "using prefix '${PREFIX}'"
-ACR_RMFILES=" test.c a.out a.exe"
+# ACR_RMFILES=" test.c a.out a.exe"
 
 COMPILER=CC
 ochof "checking for c compiler... "

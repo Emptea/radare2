@@ -425,7 +425,7 @@ ocho "checking target system type... ${TARGET}"
 [ -n "${prefix}" ] && PREFIX="${prefix}"
 ocho "checking for working directories... ${WODIS}"
 ocho "using prefix '${PREFIX}'"
-# ACR_RMFILES=" test.c a.out a.exe"
+ACR_RMFILES=" test.c a.out a.exe"
 
 COMPILER=CC
 ochof "checking for c compiler... "

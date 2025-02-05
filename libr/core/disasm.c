@@ -6906,7 +6906,7 @@ toro:
 						ds_comment (ds, true, "%s %s", ds->cmtoken, esil);
 					}
 				}
-				ds_print_ptr (ds, len + 256, ds->index);
+				// ds_print_ptr (ds, len + 256, ds->index);
 				ds_print_sysregs (ds);
 				ds_print_fcn_name (ds);
 				ds_print_demangled (ds);

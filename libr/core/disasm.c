@@ -4258,6 +4258,33 @@ static void ds_print_sysregs(RDisasmState *ds) {
 	}
 }
 
+static void ds_print_determined_res(RDisasmState *ds) {
+	if (!ds->show_comments) {
+		return;
+	}
+
+	RAnalOp *op = &ds->analop;
+	if (r_str_startswith (op->mnemonic, "invalid")){
+		return;
+	}
+
+	uint64_t imm = 0;
+
+	if (r_str_startswith (op->mnemonic, "lui"))
+	{
+		imm = *((uint64_t *) (op->srcs.a+0x20)) << 12;
+	} else if (r_str_startswith (op->mnemonic, "auipc"))
+	{
+		imm = *((uint64_t *) (op->srcs.a+0x20)) + (op->addr);
+	}
+
+	if (imm) {
+		ds_comment_align (ds);
+		ds_comment (ds, true, "%s 0x%"PFMT64x, ds->cmtoken, imm);
+		ds->has_description = true;
+	}
+}
+
 static void ds_print_fcn_name(RDisasmState *ds) {
 	if (!ds->show_comments) {
 		return;
@@ -6906,8 +6933,9 @@ toro:
 						ds_comment (ds, true, "%s %s", ds->cmtoken, esil);
 					}
 				}
-				// ds_print_ptr (ds, len + 256, ds->index);
+				ds_print_ptr (ds, len + 256, ds->index);
 				ds_print_sysregs (ds);
+				ds_print_determined_res(ds);
 				ds_print_fcn_name (ds);
 				ds_print_demangled (ds);
 				ds_print_color_reset (ds);

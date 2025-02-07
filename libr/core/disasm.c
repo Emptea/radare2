@@ -4275,7 +4275,7 @@ static void ds_print_determined_res(RDisasmState *ds) {
 		imm = *((uint64_t *) (op->srcs.a+0x20)) << 12;
 	} else if (r_str_startswith (op->mnemonic, "auipc"))
 	{
-		imm = *((uint64_t *) (op->srcs.a+0x20)) + (op->addr);
+		imm = (*((uint64_t *) (op->srcs.a+0x20)) << 12) + (op->addr);
 	}
 
 	if (imm) {

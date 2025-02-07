@@ -4264,6 +4264,7 @@ static void ds_print_determined_res(RDisasmState *ds) {
 	}
 
 	RAnalOp *op = &ds->analop;
+	RArchValue *src = ((RArchValue *)(op->srcs.a));
 	if (r_str_startswith (op->mnemonic, "invalid")){
 		return;
 	}
@@ -4272,10 +4273,10 @@ static void ds_print_determined_res(RDisasmState *ds) {
 
 	if (r_str_startswith (op->mnemonic, "lui"))
 	{
-		imm = *((uint64_t *) (op->srcs.a+0x20)) << 12;
+		imm = (src->imm << 12);
 	} else if (r_str_startswith (op->mnemonic, "auipc"))
 	{
-		imm = (*((uint64_t *) (op->srcs.a+0x20)) << 12) + (op->addr);
+		imm = (src->imm << 12) + (op->addr);
 	}
 
 	if (imm) {
@@ -6772,6 +6773,7 @@ toro:
 			ds_build_op_str (ds, false);
 			ds_print_ptr (ds, len + 256, ds->index);
 			ds_print_sysregs (ds);
+			ds_print_determined_res(ds);
 			ds_print_fcn_name (ds);
 			ds_print_demangled (ds);
 			ds_print_pins (ds);

@@ -4279,9 +4279,8 @@ static void ds_print_determined_res(RDisasmState *ds) {
 	}
 
 	if (imm) {
-		ds_comment_align (ds);
+		ds_begin_comment(ds);
 		ds_comment (ds, true, "%s 0x%"PFMT64x, ds->cmtoken, imm);
-		ds->has_description = true;
 	}
 }
 
